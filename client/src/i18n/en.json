@@ -1,0 +1,28 @@
+{
+  "app": { "name": "ServeConnect", "tagline": "Show up for your city." },
+  "nav": {
+    "home": "Home", "explore": "Explore", "events": "Events", "requests": "Requests", "messages": "Messages",
+    "notifications": "Notifications", "profile": "Profile", "myEvents": "My events", "certificates": "Certificates",
+    "leaderboard": "Leaderboard", "dashboard": "Organizer dashboard", "csr": "Company impact", "admin": "Admin console",
+    "settings": "Settings", "help": "Help center", "signOut": "Sign out", "scan": "Check in", "create": "Create"
+  },
+  "common": {
+    "save": "Save changes", "saved": "Saved", "cancel": "Cancel", "delete": "Delete", "edit": "Edit", "close": "Close",
+    "loading": "Loading…", "retry": "Try again", "search": "Search", "seeAll": "See all", "follow": "Follow",
+    "following": "Following", "unfollow": "Unfollow", "verified": "Verified", "report": "Report", "share": "Share",
+    "copyLink": "Copy link", "linkCopied": "Link copied", "back": "Back", "next": "Next", "done": "Done", "optional": "optional",
+    "loadMore": "Load more", "noResults": "Nothing found. Try a different search.", "required": "Required"
+  },
+  "auth": {
+    "signIn": "Sign in", "signUp": "Create account", "signInTitle": "Welcome back",
+    "signUpTitle": "Join ServeConnect", "identifier": "Email, phone or username", "password": "Password",
+    "forgot": "Forgot password?", "otpInstead": "Sign in with a one-time code", "passwordInstead": "Use my password",
+    "sendCode": "Send code", "verify": "Verify", "resend": "Resend code", "codeSent": "We sent a 6-digit code to {{dest}}",
+    "noAccount": "New to ServeConnect?", "haveAccount": "Already have an account?", "or": "or",
+    "twoFactorTitle": "Two-step verification", "twoFactorHelp": "Enter the 6-digit code from your authenticator app, or one of your backup codes."
+  },
+  "safety": {
+    "eventDisclaimer": "The organizer — not ServeConnect — is responsible for on-site safety arrangements. Follow their briefing, and report any safety concern to our moderation team.",
+    "platformDisclaimer": "ServeConnect connects organizers, volunteers and donors. It is not a party to any activity and does not guarantee the accuracy of donation matches, the outcome of events or the conduct of any user."
+  }
+}

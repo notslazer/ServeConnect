@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-paper text-ink font-sans antialiased; font-feature-settings: 'ss01'; }
+  h1, h2, h3 { @apply font-display text-ink; letter-spacing: -0.015em; }
+  :focus-visible { @apply outline-none ring-2 ring-brand-400 ring-offset-2 ring-offset-paper; }
+  ::selection { @apply bg-marigold-100; }
+}
+
+@layer components {
+  .card { @apply bg-paper-card border border-paper-line rounded-2xl; }
+  .link { @apply text-brand-600 hover:text-brand-700 hover:underline underline-offset-2; }
+  .muted { @apply text-ink-soft; }
+  .input {
+    @apply w-full rounded-xl border border-paper-line bg-white px-3.5 py-2.5 text-[15px] text-ink placeholder:text-ink-faint
+      focus:border-brand-400 focus:ring-2 focus:ring-brand-100 focus:outline-none transition disabled:bg-paper disabled:text-ink-faint;
+  }
+  .input-error { @apply border-blood-500 focus:border-blood-500 focus:ring-blood-100; }
+  .prose-body { @apply text-[15px] leading-relaxed text-ink whitespace-pre-wrap break-words; }
+  /* The "service stamp": hours of verified service rendered like an ink stamp. */
+  .stamp {
+    @apply inline-flex flex-col items-center justify-center rounded-full border-[3px] border-dashed border-brand-500 text-brand-600 font-display font-extrabold;
+    transform: rotate(-8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+.leaflet-container { font: inherit; border-radius: 1rem; }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }

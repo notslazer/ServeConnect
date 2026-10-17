@@ -1,0 +1,17 @@
+{
+  "name": "ServeConnect",
+  "short_name": "ServeConnect",
+  "description": "Volunteer, donate and coordinate community service with verified NGOs.",
+  "start_url": "/feed",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F5F6F8",
+  "theme_color": "#313C99",
+  "orientation": "portrait-primary",
+  "categories": ["social", "lifestyle"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,64 @@
+# Render Blueprint — one free web service that serves both the API and the web app.
+# Database: use a free Neon/Supabase Postgres and paste its URL into DATABASE_URL.
+# Media: use a free Cloudinary account (Render's free disk is wiped on every deploy).
+services:
+  - type: web
+    name: serveconnect
+    runtime: node
+    plan: free
+    buildCommand: npm --prefix server ci --include=dev && npm --prefix client ci --include=dev && npm --prefix client run build && npm --prefix server run build
+    startCommand: npm --prefix server start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_SSL
+        value: "true"
+      - key: APP_URL
+        sync: false            # e.g. https://serveconnect.onrender.com
+      - key: PUBLIC_API_URL
+        sync: false            # same as APP_URL
+      - key: CORS_ORIGINS
+        sync: false            # same as APP_URL
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: TRUST_PROXY
+        value: "2"             # 2 when the web app is on Vercel (Vercel proxy + Render); use 1 if Render serves the web app
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: QR_SECRET
+        generateValue: true
+      - key: ENCRYPTION_KEY
+        sync: false            # 64 hex chars — copy from your local server/.env (never change it after launch!)
+      - key: BLIND_INDEX_KEY
+        sync: false            # 64 hex chars — copy from your local server/.env
+      - key: VAPID_PUBLIC_KEY
+        sync: false
+      - key: VAPID_PRIVATE_KEY
+        sync: false
+      - key: VAPID_SUBJECT
+        value: mailto:you@example.com
+      - key: STORAGE_DRIVER
+        value: cloudinary
+      - key: CLOUDINARY_URL
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: SMS_PROVIDER
+        value: console

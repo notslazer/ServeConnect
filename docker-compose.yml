@@ -1,0 +1,51 @@
+# Local infrastructure for development: PostgreSQL + Mailpit (catches every email so you can read OTPs).
+#   docker compose up -d
+#   Mailpit inbox: http://localhost:8025   (set SMTP_HOST=localhost SMTP_PORT=1025 in server/.env)
+# Add the "app" profile to also run the full app in a container:  docker compose --profile app up --build
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: serveconnect
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 10
+
+  mail:
+    image: axllent/mailpit:latest
+    restart: unless-stopped
+    ports: ["8025:8025", "1025:1025"]
+
+  # Optional virus scanner for uploads (set CLAMAV_HOST=localhost). Needs ~1.5 GB RAM.
+  clamav:
+    image: clamav/clamav:stable
+    profiles: ["clamav"]
+    ports: ["3310:3310"]
+
+  app:
+    profiles: ["app"]
+    build: .
+    depends_on:
+      db: { condition: service_healthy }
+    env_file: server/.env
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/serveconnect
+      NODE_ENV: production
+      APP_URL: http://localhost:4000
+      PUBLIC_API_URL: http://localhost:4000
+      CORS_ORIGINS: http://localhost:4000
+      COOKIE_SECURE: "false"
+      SMTP_HOST: mail
+      SMTP_PORT: "1025"
+    ports: ["4000:4000"]
+    volumes: [uploads:/app/server/uploads]
+
+volumes:
+  pgdata:
+  uploads:

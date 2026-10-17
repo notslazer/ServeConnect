@@ -1,0 +1,25 @@
+{
+  "name": "serveconnect",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ServeConnect \u2014 a unified NGO and volunteer engagement platform",
+  "scripts": {
+    "install:all": "npm install && npm --prefix server install && npm --prefix client install",
+    "setup": "npm --prefix server run setup",
+    "db:migrate": "npm --prefix server run migrate",
+    "db:seed": "npm --prefix server run seed",
+    "db:reset": "npm --prefix server run seed -- --reset",
+    "dev": "concurrently -n api,web -c blue,magenta \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "build": "npm --prefix client run build && npm --prefix server run build",
+    "start": "npm --prefix server start",
+    "test:smoke": "node server/scripts/smoke-test.mjs",
+    "typecheck": "npm --prefix server run typecheck && npm --prefix client run typecheck",
+    "make-admin": "npm --prefix server run make-admin --"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

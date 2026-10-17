@@ -1,0 +1,10 @@
+{
+  "appId": "app.serveconnect.mobile",
+  "appName": "ServeConnect",
+  "webDir": "dist",
+  "server": {
+    "url": "https://YOUR-DEPLOYED-DOMAIN",
+    "cleartext": false
+  },
+  "android": { "allowMixedContent": false }
+}
